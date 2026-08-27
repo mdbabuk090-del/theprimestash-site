@@ -938,3 +938,15 @@ body.has-sticky-nav { padding-bottom: 72px; }
   margin: 0 0 22px; font: 800 clamp(26px, 3.4vw, 36px)/1.2 system-ui, sans-serif;
   letter-spacing: -.02em;
 }
+
+/* Banner dau trang chu — anh dung san, chu nam TRONG anh.
+   Chi de width:100% + height:auto: anh ty le 2.63:1 nen tren dien thoai no tu thap lai,
+   chu "DRAMORA" van chiem ~12% chieu cao anh nen doc duoc. KHONG dung object-fit:cover
+   o day — cover se cat mat chu hai ben. */
+.home-banner {
+  display: block; margin: 22px 0 34px;
+  border-radius: 20px; overflow: hidden;
+  box-shadow: 0 10px 34px rgba(0,0,0,.28);
+}
+.home-banner img { width: 100%; height: auto; display: block; }
+@media (max-width: 520px) { .home-banner { border-radius: 14px; margin: 16px 0 26px; } }
