@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 1200" width="800" height="1200" role="img" aria-label="She Stopped the Billionaire&#39;s Last Drink">
+  <defs>
+    <!-- Lop phu cho chu tua doc duoc. 27/8 co thu ban nhat (phu tu 44%, mau nau-ruou)
+         cho hop vo sang, nhung chi Huong bo ban sang -> tra ve muc phu dam nhu cu. -->
+    <linearGradient id="scrim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0.30" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.58" stop-color="#07070a" stop-opacity="0.55"/>
+      <stop offset="0.80" stop-color="#07070a" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#07070a" stop-opacity="0.97"/>
+    </linearGradient>
+    <linearGradient id="topfade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#07070a" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#07070a" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="fallback" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1b1b22"/>
+      <stop offset="1" stop-color="#4f9e5f"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1200" fill="url(#fallback)"/>
+  <rect width="800" height="240" fill="url(#topfade)"/>
+  <rect width="800" height="1200" fill="url(#scrim)"/>
+
+  <text x="60" y="96" fill="#ffffff" fill-opacity="0.86"
+        font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif"
+        font-size="26" font-weight="700" letter-spacing="6">CORPORATE CONSPIRACY</text>
+
+  <rect x="60" y="778" width="86" height="6" fill="#4f9e5f"/>
+
+  <text fill="#ffffff" font-family="Georgia,'Iowan Old Style','Times New Roman',serif"
+        font-size="78" font-weight="700" letter-spacing="-1"><tspan x="60" y="896">She Stopped the</tspan><tspan x="60" y="984">Billionaire&#39;s</tspan><tspan x="60" y="1072">Last Drink</tspan></text>
+
+  <text x="60" y="1142" fill="#ffffff" fill-opacity="0.62"
+        font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif"
+        font-size="27" font-weight="600" letter-spacing="3.5">DRAMORA</text>
+</svg>
