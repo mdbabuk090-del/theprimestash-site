@@ -810,3 +810,13 @@ body.has-sticky-nav { padding-bottom: 72px; }
   text-transform: uppercase; color: var(--accent);
 }
 .rl-t { display: block; padding: 8px 16px 16px; font: 700 16px/1.35 system-ui, sans-serif; }
+
+/* The chinh sach o goc — khong co anh, nen nhin phai ra "tai lieu" chu khong phai bia truyen */
+.rl-doc {
+  display: flex; align-items: center; min-height: 78px;
+  text-decoration: none; color: inherit;
+  border: 1px solid var(--border); border-radius: 13px;
+  background: var(--card); transition: border-color .15s, box-shadow .15s;
+}
+.rl-doc:hover { border-color: var(--accent); box-shadow: 0 8px 26px rgba(0,0,0,.10); }
+.rl-doc .rl-t { padding: 0 18px; font-size: 15px; }
