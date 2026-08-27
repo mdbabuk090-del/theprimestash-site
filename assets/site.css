@@ -1009,3 +1009,41 @@ body.has-sticky-nav { padding-bottom: 72px; }
   /* muc luc chuong + goi y truyen khac */
   .toc a, .nw-aside-list a { min-height: 44px; }
 }
+
+/* ------------------------------------------------ dai anh canh phim duoi phan mo dau
+   chị Hương 28/8: dua mau mot hang 5 khung canh phim duoi bia. Tren may de bàn xep
+   thanh hang chia deu; tren dien thoai KHONG chia 5 (moi o con 60px, vo nghia) ma
+   cho keo ngang, moi o rong 190px — giong dai bia truyen o trang chu, thao tac quen tay. */
+.scenes { margin: 20px 0 26px; }
+.sc-row {
+  display: flex; gap: 10px;
+  overflow-x: auto; overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity; scrollbar-width: none;
+  margin-inline: -18px; padding-inline: 18px; padding-bottom: 4px;
+}
+.sc-row::-webkit-scrollbar { display: none; }
+
+.sc-item {
+  position: relative; margin: 0;
+  flex: 0 0 auto; width: 190px; aspect-ratio: 11/10;
+  border-radius: 11px; overflow: hidden; background: #17141b;
+  scroll-snap-align: start;
+}
+.sc-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.sc-cap {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 20px 11px 9px;
+  background: linear-gradient(to top, rgba(7,7,10,.88), rgba(7,7,10,0));
+  color: #fff; font: 600 13px/1.3 system-ui, sans-serif;
+}
+
+/* Tu 760px tro len thi du cho -> bo keo ngang, chia deu ca hang cho can doi. */
+@media (min-width: 760px) {
+  .sc-row {
+    display: grid; grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+    overflow: visible; margin-inline: 0; padding-inline: 0;
+  }
+  .sc-item { width: auto; }
+}
