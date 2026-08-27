@@ -9,16 +9,16 @@
   --card: #ffffff;
   --maxw: 720px;
 
-  /* VO TOI (chi Huong chot 27/8: "vo toi + vung doc sang", kieu Netflix/vstory).
-     Header, hero chuong, hero trang chu, footer dung bo mau nay o MOI nen doc —
-     doi nen doc chi doi vung chu truyen, khong doi vo. Nho vay web luon co mang
-     toi lam diem tua cho mat, khong con trang bong tu tren xuong duoi.            */
-  --shell: #16121a;
-  --shell-2: #221a27;
-  --shell-line: #332a38;
-  --shell-text: #f3ede7;
-  --shell-muted: #a79ca6;
-  --gold: #c8a45c;
+  /* VO SANG (chi Huong doi 27/8 chieu: ban vo toi nhin "toi toi am u" — header den,
+     hero den, bia den chong len nhau thanh ba mang toi lien tiep).
+     Nay vo la kem am, chu than chi, nhan giong do ruou. Ten bien giu nguyen "shell"
+     de khong phai sua het moi cho dang goi.                                        */
+  --shell: #f6f1e8;
+  --shell-2: #fffdf9;
+  --shell-line: #e3dacb;
+  --shell-text: #1d1a1f;
+  --shell-muted: #6b6169;
+  --gold: #9a7526;
   --wine: #8e2440;
 
   /* content-gate doc lai mau tu day */
@@ -169,7 +169,7 @@ a { color: inherit; }
 
 .site-head {
   position: sticky; top: 0; z-index: 500;
-  background: rgba(22, 18, 26, .92);
+  background: rgba(246, 241, 232, .92);
   -webkit-backdrop-filter: saturate(160%) blur(12px);
   backdrop-filter: saturate(160%) blur(12px);
   border-bottom: 1px solid var(--shell-line);
@@ -204,18 +204,19 @@ a { color: inherit; }
   margin: 22px 0 26px; padding: 26px 24px 24px;
   border-radius: 20px; background: var(--shell); color: var(--shell-text);
 }
-/* anh bia lam nen: phong to + lam mo + phu gradient toi. Mot tam anh la du de trang
-   het cam giac trong tron, khong can them do hoa nao khac.                         */
+/* anh bia lam nen: phong to + lam mo. Tren vo SANG phai keo opacity xuong that thap
+   va phu lop kem gan duc — de nguyen .5 nhu hoi vo toi thi anh toi hien len thanh
+   vet xam ban, nhin nhu web hong.                                                  */
 .hero-bg {
   position: absolute; inset: -30px; z-index: -2;
   background-image: var(--art); background-size: cover; background-position: 50% 28%;
-  filter: blur(26px) saturate(120%); opacity: .5; transform: scale(1.1);
+  filter: blur(30px) saturate(135%); opacity: .3; transform: scale(1.1);
 }
 .hero::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(105deg, rgba(26,20,25,.96) 0%, rgba(30,21,27,.84) 45%, rgba(40,24,32,.52) 100%),
-    linear-gradient(200deg, rgba(142,36,64,.42), rgba(0,0,0,0) 62%);
+    linear-gradient(105deg, rgba(250,246,238,.93) 0%, rgba(246,241,232,.87) 45%, rgba(252,247,240,.8) 100%),
+    linear-gradient(200deg, rgba(142,36,64,.09), rgba(255,255,255,0) 62%);
 }
 .hero-in { display: flex; gap: 20px; align-items: flex-start; }
 /* height: auto BAT BUOC — the <img> co thuoc tinh height="1200", trinh duyet coi do
@@ -226,7 +227,7 @@ a { color: inherit; }
   width: 150px; flex: 0 0 150px;
   height: auto; aspect-ratio: 2/3; object-fit: cover; object-position: 50% 30%;
   border-radius: 10px; display: block;
-  box-shadow: 0 10px 26px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.09);
+  box-shadow: 0 8px 22px rgba(60,45,35,.22), 0 0 0 1px rgba(0,0,0,.07);
 }
 .hero-txt { min-width: 0; flex: 1; }
 .hero-kicker {
@@ -244,11 +245,11 @@ a { color: inherit; }
   letter-spacing: -.022em;
 }
 .hero .hook {
-  margin: 13px 0 0; color: #cec5cc;
+  margin: 13px 0 0; color: #4b4550;
   font: 400 15.5px/1.62 system-ui, sans-serif; max-width: 54ch;
 }
 .hero-of {
-  margin: 15px 0 0; padding-top: 13px; border-top: 1px solid rgba(255,255,255,.13);
+  margin: 15px 0 0; padding-top: 13px; border-top: 1px solid rgba(0,0,0,.11);
   font: 600 13px/1.4 system-ui, sans-serif; color: var(--gold);
 }
 .hero-act { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 16px; }
@@ -302,12 +303,12 @@ h1.title {
   border-radius: 20px; background: var(--shell); color: var(--shell-text);
   text-align: center;
 }
-.home-head .hero-bg { opacity: .42; background-position: 50% 30%; }
+.home-head .hero-bg { opacity: .26; background-position: 50% 30%; }
 .home-head::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(22,18,26,.82) 0%, rgba(22,18,26,.94) 100%),
-    linear-gradient(0deg, rgba(142,36,64,.3), rgba(0,0,0,0));
+    linear-gradient(180deg, rgba(250,246,238,.88) 0%, rgba(244,238,228,.95) 100%),
+    linear-gradient(0deg, rgba(142,36,64,.08), rgba(255,255,255,0));
 }
 .home-kicker {
   margin: 0 0 14px; font: 600 10.5px/1 system-ui, sans-serif;
@@ -319,7 +320,7 @@ h1.title {
   letter-spacing: .12em; text-transform: uppercase;
 }
 .home-tag {
-  margin: 0 auto; max-width: 46ch; color: #d3cad1;
+  margin: 0 auto; max-width: 46ch; color: #554e58;
   font: 400 16px/1.62 system-ui, sans-serif;
 }
 .home-rule {
@@ -489,8 +490,8 @@ article.story strong { font-weight: 700; }
 .save-btn.on { color: var(--accent); border-color: var(--accent); background: transparent; }
 /* nut Save nam trong hero toi */
 .hero .save-btn {
-  margin: 0; background: rgba(255,255,255,.07); color: var(--shell-text);
-  border-color: rgba(255,255,255,.2);
+  margin: 0; background: rgba(0,0,0,.035); color: var(--shell-text);
+  border-color: rgba(0,0,0,.16);
 }
 .hero .save-btn:hover { border-color: var(--gold); color: var(--gold); }
 .hero .save-btn.on { color: var(--gold); border-color: var(--gold); background: rgba(200,164,92,.12); }
@@ -574,7 +575,7 @@ nav.chapter-nav .mid .val {
 .vb-cta {
   display: inline-flex; align-items: center; gap: 9px;
   padding: 13px 22px; border-radius: 999px; text-decoration: none;
-  background: var(--shell); color: var(--shell-text);
+  background: var(--wine); color: #fff;
   font: 600 14px/1 system-ui, sans-serif;
 }
 .vb-cta:hover { background: var(--accent); }
