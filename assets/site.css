@@ -45,7 +45,10 @@ html[data-theme="night"] {
 }
 /* header + footer da la vo TOI o moi nen doc — khong can rieng cho night nua */
 html[data-theme="night"] .rail-list a:hover { background: #241d24; }
-html[data-theme="night"] .bk-tag { background: #2a2229; color: #cdc4bd; }
+html[data-theme="night"] .bk-tag {
+  background: color-mix(in srgb, var(--tone, var(--accent)) 22%, #1b151b);
+  color: color-mix(in srgb, var(--tone, var(--accent)) 62%, #ffffff);
+}
 html[data-theme="night"] .shelf-arrow { background: #1c161c; color: var(--text); }
 
 /* Nen toi + o quang cao nen TRANG = choi nhu den pha. Boc khung xam diu lai. */
@@ -231,7 +234,8 @@ a { color: inherit; }
 .hero-txt { min-width: 0; flex: 1; }
 .hero-kicker {
   margin: 2px 0 9px; font: 600 10.5px/1.5 system-ui, sans-serif;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--gold);
+  letter-spacing: .15em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--tone, var(--gold)) 72%, #ffffff);
 }
 .hero-story {
   display: block; margin: 0 0 10px; text-decoration: none;
@@ -384,9 +388,13 @@ h1.title {
   pointer-events: none;
 }
 
+/* --tone: mau rieng tung truyen, build.cjs gan thang vao the. Truyen nao khong co
+   thi roi ve mau ruou chung, khong vo bo cuc. */
 .bk-tag {
   margin-top: 10px; align-self: flex-start;
-  background: #ececef; color: #3f3f4a; border-radius: 5px;
+  background: color-mix(in srgb, var(--tone, var(--accent)) 15%, transparent);
+  color: color-mix(in srgb, var(--tone, var(--accent)) 78%, #101014);
+  border-radius: 5px;
   padding: 3px 8px;
   font: 500 12.5px/1.45 system-ui, sans-serif;
   max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -598,11 +606,11 @@ nav.chapter-nav .mid .val {
 .pick-body { min-width: 0; flex: 1; }
 .pick-cat {
   margin: 0 0 6px; font: 600 10px/1 system-ui, sans-serif;
-  letter-spacing: .13em; text-transform: uppercase; color: var(--accent);
+  letter-spacing: .13em; text-transform: uppercase; color: var(--tone, var(--accent));
 }
 .pick-body h3 { margin: 0 0 11px; font: 700 15.5px/1.32 system-ui, sans-serif; }
 .pick-body h3 a { text-decoration: none; }
-.pick-body h3 a:hover { color: var(--accent); }
+.pick-body h3 a:hover { color: var(--tone, var(--accent)); }
 
 .pick-chaps { list-style: none; margin: 0 0 10px; padding: 0; }
 .pick-chaps a {
@@ -618,7 +626,7 @@ nav.chapter-nav .mid .val {
 .pick-chaps a:hover b { color: var(--accent); }
 .pick-chaps span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pick-all {
-  font: 600 12px/1 system-ui, sans-serif; color: var(--accent); text-decoration: none;
+  font: 600 12px/1 system-ui, sans-serif; color: var(--tone, var(--accent)); text-decoration: none;
 }
 .pick-all:hover { text-decoration: underline; }
 
@@ -820,3 +828,113 @@ body.has-sticky-nav { padding-bottom: 72px; }
 }
 .rl-doc:hover { border-color: var(--accent); box-shadow: 0 8px 26px rgba(0,0,0,.10); }
 .rl-doc .rl-t { padding: 0 18px; font-size: 15px; }
+
+/* =============================================================== TRANG TIN TUC (goc)
+   chi Huong 27/8, mau https://treeiq.biz/: bai noi bat co anh to o tren, duoi la danh
+   sach bai anh nho ben trai, cot "Top stories" ben phai. Dung chung vo toi + nen kem
+   voi khu truyen de hai ben nhin ra la mot nha.                                      */
+
+.nw-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; margin: 26px 0 50px; }
+@media (min-width: 1060px) {
+  .nw-grid { grid-template-columns: minmax(0, 1fr) 330px; gap: 52px; align-items: start; }
+}
+.nw-main { min-width: 0; }
+
+.nw-cat {
+  display: block; margin: 0 0 8px;
+  font: 700 10.5px/1 system-ui, sans-serif; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--accent);
+}
+.nw-cat a { text-decoration: none; }
+.nw-by { display: block; margin-top: 10px; font: 500 12.5px/1.4 system-ui, sans-serif; color: var(--muted); }
+.nw-ex { display: block; margin-top: 9px; font: 400 15px/1.6 system-ui, sans-serif; color: var(--muted); }
+
+/* anh thieu thi ve mang mau chuyen — khong de o trong toang hoac icon vo hinh */
+.nw-noimg { background: linear-gradient(135deg, var(--shell-2), var(--wine)); }
+
+/* --------- bai noi bat */
+.nw-lead {
+  display: block; text-decoration: none; color: inherit;
+  border-bottom: 1px solid var(--border); padding-bottom: 26px; margin-bottom: 26px;
+}
+.nw-lead-art {
+  display: block; width: 100%; aspect-ratio: 16/9; overflow: hidden;
+  border-radius: 14px; background: var(--shell-2);
+}
+.nw-lead-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nw-lead-body { display: block; padding-top: 18px; }
+.nw-lead-t {
+  display: block; font: 800 clamp(24px, 3vw, 34px)/1.22 system-ui, -apple-system, sans-serif;
+  letter-spacing: -.02em;
+}
+.nw-lead:hover .nw-lead-t { color: var(--accent); }
+
+/* --------- danh sach bai */
+.nw-sec {
+  margin: 0 0 16px; font: 700 12px/1 system-ui, sans-serif;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.nw-list { display: flex; flex-direction: column; }
+.nw-row {
+  display: flex; gap: 20px; text-decoration: none; color: inherit;
+  padding: 20px 0; border-bottom: 1px solid var(--border);
+}
+.nw-row-art {
+  flex: 0 0 190px; display: block; aspect-ratio: 16/10; overflow: hidden;
+  border-radius: 11px; background: var(--shell-2);
+}
+.nw-row-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.nw-row-body { min-width: 0; flex: 1; display: block; }
+.nw-row-t {
+  display: block; font: 700 19px/1.34 system-ui, -apple-system, sans-serif;
+  letter-spacing: -.012em;
+}
+.nw-row:hover .nw-row-t { color: var(--accent); }
+@media (max-width: 620px) {
+  .nw-row { gap: 14px; }
+  .nw-row-art { flex: 0 0 116px; }
+  .nw-row-t { font-size: 16px; }
+  .nw-row .nw-ex { display: none; }
+}
+
+/* --------- cot phai */
+.nw-aside {
+  border: 1px solid var(--border); border-radius: 14px;
+  background: var(--card); padding: 18px 16px;
+}
+@media (min-width: 1060px) { .nw-aside { position: sticky; top: 76px; } }
+.nw-aside-h {
+  margin: 0 0 12px; padding: 0 4px;
+  font: 700 11.5px/1 system-ui, sans-serif; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+}
+.nw-aside-list { list-style: none; margin: 0; padding: 0; counter-reset: none; }
+.nw-aside-list li + li { border-top: 1px solid var(--border); }
+.nw-aside-list a {
+  display: flex; gap: 12px; align-items: baseline;
+  padding: 11px 6px; text-decoration: none; color: inherit;
+}
+.nw-aside-list a:hover { color: var(--accent); }
+.nw-aside-list b {
+  flex: 0 0 auto; font: 800 13px/1.4 system-ui, sans-serif; color: var(--accent);
+}
+.nw-aside-list span { font: 600 14px/1.42 system-ui, sans-serif; }
+
+/* --------- trang bai */
+.nw-article { max-width: 760px; }
+.nw-article h1 {
+  margin: 0 0 14px; font: 800 clamp(27px, 3.6vw, 40px)/1.18 system-ui, -apple-system, sans-serif;
+  letter-spacing: -.022em;
+}
+.nw-standfirst {
+  margin: 0 0 14px; font: 400 18px/1.6 system-ui, sans-serif; color: var(--muted);
+}
+.nw-hero-img {
+  width: 100%; height: auto; aspect-ratio: 16/9; object-fit: cover;
+  border-radius: 14px; display: block; margin: 22px 0 26px;
+}
+.nw-body p { margin: 0 0 1.05em; }
+.nw-cat-h {
+  margin: 0 0 22px; font: 800 clamp(26px, 3.4vw, 36px)/1.2 system-ui, sans-serif;
+  letter-spacing: -.02em;
+}
