@@ -198,7 +198,30 @@ a { color: inherit; }
 }
 .site-head nav a { color: var(--shell-muted); text-decoration: none; }
 .site-head nav a:hover { color: var(--shell-text); }
-@media (max-width: 560px) { .site-head nav { display: none; } }
+/* 28/8 — TRUOC day o day la `display: none`: dien thoai KHONG CO menu nao het, vao trang
+   chuong roi thi khong co duong nao ve muc truyen ngoai nut Back cua trinh duyet.
+   Ma gan het nguoi xem den tu reel => toan dung dien thoai. Nay cho menu xuong HANG HAI,
+   keo ngang duoc, o cham cao 44px cho vua ngon tay. */
+@media (max-width: 560px) {
+  .site-head .wrap {
+    height: auto; flex-wrap: wrap; gap: 0;
+    padding-top: 10px; padding-bottom: 0;
+  }
+  .brand { font-size: 19px; letter-spacing: .14em; }
+  .site-head nav {
+    order: 3; width: 100%;
+    margin-inline: -18px; padding-inline: 18px;
+    gap: 18px; overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .site-head nav::-webkit-scrollbar { display: none; }
+  .site-head nav a {
+    flex: 0 0 auto; display: flex; align-items: center;
+    height: 42px; font-size: 13.5px;
+    border-bottom: 2px solid transparent;
+  }
+  .site-head nav a[aria-current="page"] { color: var(--shell-text); border-bottom-color: var(--gold); }
+}
 
 /* --------------------------------------------------------- hero toi (chuong) */
 
@@ -529,7 +552,7 @@ article.story strong { font-weight: 700; }
 /* ---------------------------------------------------------------- nav */
 
 nav.chapter-nav {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
   margin: 34px 0 0; padding-top: 24px; border-top: 1px solid var(--border);
 }
 nav.chapter-nav a, nav.chapter-nav span {
@@ -558,7 +581,7 @@ nav.chapter-nav .mid .val {
   text-transform: uppercase; color: var(--muted);
 }
 @media (min-width: 620px) {
-  nav.chapter-nav { grid-template-columns: 1fr auto 1fr; align-items: center; }
+  nav.chapter-nav { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; }
   nav.chapter-nav .mid { grid-column: auto; order: 0; padding: 0 8px; }
 }
 
@@ -590,9 +613,14 @@ nav.chapter-nav .mid .val {
 /* -------------------------------------------------- trang chu · de xuat chuong */
 
 .picks { margin: 44px 0 40px; }
-.picks-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-@media (min-width: 760px) { .picks-grid { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1240px) { .picks-grid { grid-template-columns: repeat(3, 1fr); } }
+/* PHAI la minmax(0,1fr), KHONG duoc de 1fr tran. `1fr` co san trong no mot muc toi thieu
+   = be rong noi dung khong the co them (min-content). The truyen co danh sach chuong,
+   ten chuong dai nhat lam o luoi phinh ra 394px trong khi khung dien thoai chi 354px
+   -> ca trang /stories/ tran ngang, mep phai bi cat. Do 28/8 tren khung 390px.
+   minmax(0,...) go bo muc toi thieu do, o luoi chiu co lai dung be ngang man hinh. */
+.picks-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (min-width: 760px) { .picks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1240px) { .picks-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 .pick {
   display: flex; gap: 16px; padding: 16px;
@@ -624,7 +652,11 @@ nav.chapter-nav .mid .val {
   letter-spacing: .06em; color: var(--border);
 }
 .pick-chaps a:hover b { color: var(--accent); }
-.pick-chaps span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* min-width:0 la BAT BUOC, khong phai cho dep. `.pick-chaps a` la flex; the span nay la
+   con cua flex nen mac dinh KHONG duoc co lai duoi be rong noi dung. Ten chuong dai
+   ("The Maid Who Was Afraid To Speak") vi the day ca the ra ngoai -> ca trang /stories/
+   tran ngang 23px tren dien thoai 390px, cat cut chu o mep phai. Do 28/8. */
+.pick-chaps span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pick-all {
   font: 600 12px/1 system-ui, sans-serif; color: var(--tone, var(--accent)); text-decoration: none;
 }
@@ -634,8 +666,8 @@ section.may-like { margin: 46px 0 0; padding-top: 28px; border-top: 1px solid va
 section.may-like h2 {
   margin: 0 0 16px; font: 700 19px/1.3 system-ui, sans-serif; letter-spacing: -.01em;
 }
-.cards { display: grid; grid-template-columns: 1fr; gap: 12px; }
-@media (min-width: 640px) { .cards { grid-template-columns: 1fr 1fr; } }
+.cards { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+@media (min-width: 640px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .card {
   display: block; text-decoration: none; padding: 16px;
   background: var(--card); border: 1px solid var(--border); border-radius: 13px;
@@ -714,7 +746,7 @@ footer.site-foot .disclaimer { font-size: 12.5px; opacity: .85; margin-bottom: 1
 
 .sticky-nav {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 8600;
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px;
+  display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 8px;
   align-items: center;
   padding: 10px max(14px, env(safe-area-inset-left)) calc(10px + env(safe-area-inset-bottom));
   background: color-mix(in srgb, var(--card) 92%, transparent);
@@ -759,8 +791,8 @@ body.has-sticky-nav { padding-bottom: 72px; }
 }
 .si-txt { margin: 0; font-size: 16px; line-height: 1.68; color: var(--text); }
 
-.si-people { display: grid; grid-template-columns: 1fr; gap: 10px; }
-@media (min-width: 560px) { .si-people { grid-template-columns: 1fr 1fr; } }
+.si-people { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+@media (min-width: 560px) { .si-people { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .si-p {
   border: 1px solid var(--border); border-radius: 11px; padding: 12px 14px;
 }
@@ -803,8 +835,8 @@ body.has-sticky-nav { padding-bottom: 72px; }
 
 /* -------------------------------------------- trang goc tam (khu tin tuc sau nay) */
 
-.rl-grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
-@media (min-width: 720px) { .rl-grid { grid-template-columns: repeat(3, 1fr); } }
+.rl-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+@media (min-width: 720px) { .rl-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 .rl-card {
   display: block; text-decoration: none; color: inherit;
   border: 1px solid var(--border); border-radius: 15px; overflow: hidden;
@@ -950,3 +982,30 @@ body.has-sticky-nav { padding-bottom: 72px; }
 }
 .home-banner img { width: 100%; height: auto; display: block; }
 @media (max-width: 520px) { .home-banner { border-radius: 14px; margin: 16px 0 26px; } }
+
+/* ============================================================ o cham dien thoai
+   Do 28/8 tren khung 390px: mot loat lien ket cao 15-27px, ngon tay bam hay truot
+   sang dong ben canh. Gan het nguoi doc den tu reel nen deu dung dien thoai —
+   day la duong CHINH vao truyen, khong phai chi tiet trang tri.
+   Muc 44px la co ngon tay nguoi lon theo huong dan giao dien cua Apple/Google.
+   Chi noi rong VUNG BAM (padding), KHONG doi co chu — de bo cuc khong xo lech.   */
+@media (max-width: 560px) {
+  /* danh sach chuong trong the "Start reading": 27px -> 44px */
+  .pick-chaps a { padding: 11px 0; }
+
+  /* "All 10 chapters →": 15px -> 40px, va tach khoi danh sach chuong ben tren */
+  .pick-all { display: inline-flex; align-items: center; min-height: 40px; }
+
+  /* chan trang: cac lien ket chinh sach dinh sat nhau */
+  footer.site-foot nav { gap: 4px 18px; }
+  footer.site-foot nav a { display: inline-flex; align-items: center; min-height: 40px; }
+
+  /* nut co chu (AA) va nut luu truyen */
+  .rs-open, .save-btn { min-height: 40px; }
+
+  /* logo tren cung cung la duong ve trang chu */
+  .brand { display: inline-flex; align-items: center; min-height: 40px; }
+
+  /* muc luc chuong + goi y truyen khac */
+  .toc a, .nw-aside-list a { min-height: 44px; }
+}
