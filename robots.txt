@@ -1,20 +1,26 @@
 User-agent: OAI-SearchBot
 Allow: /
+Disallow:
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow:
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow:
 
 User-agent: Facebot
 Allow: /
+Disallow:
 
 User-agent: facebookcatalog
 Allow: /
+Disallow:
 
 User-agent: Twitterbot
 Allow: /
+Disallow:
 
 User-agent: *
 Disallow: /
